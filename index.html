@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Danillo e Ana</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffdde1, #f5f5f5);
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.8em;
+      color: #c2185b;
+    }
+    .botao {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      background-color: #c2185b;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .mensagem, .contador, .galeria {
+      display: none;
+      margin-top: 30px;
+    }
+    audio {
+      display: none;
+    }
+    .nome-casal {
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .galeria img {
+      width: 100%;
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="Delacruz  - Sunshine(MP3_160K).mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="container">
+    <h1>Para a minha princesa Ana</h1>
+    <div class="nome-casal">Danillo e Ana</div>
+    <button class="botao" onclick="mostrarSurpresa()">Clique para ver a surpresa</button>
+
+    <div class="mensagem">
+      <p>Desde a primeira vez que eu te vi, te amei profundamente.</p>
+    </div>
+
+    <div class="contador" id="contador"></div>
+
+    <div class="galeria">
+      <h2>Nossas Memórias</h2>
+      <p>(Adicione suas fotos na pasta <strong>fotos/</strong> e edite este HTML para mostrá-las)</p>
+      <img src="fotos/foto1.jpg" alt="Foto 1" />
+      <img src="fotos/foto2.jpg" alt="Foto 2" />
+      <img src="fotos/foto3.jpg" alt="Foto 3" />
+    </div>
+  </div>
+
+  <script>
+    function mostrarSurpresa() {
+      document.querySelector('.mensagem').style.display = 'block';
+      document.querySelector('.contador').style.display = 'block';
+      document.querySelector('.galeria').style.display = 'block';
+    }
+
+    const inicioRelacionamento = new Date("2022-10-21T00:00:00");
+    const contadorEl = document.getElementById("contador");
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diferenca = agora - inicioRelacionamento;
+
+      const segundos = Math.floor(diferenca / 1000) % 60;
+      const minutos = Math.floor(diferenca / (1000 * 60)) % 60;
+      const horas = Math.floor(diferenca / (1000 * 60 * 60)) % 24;
+      const diasTotais = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+
+      const anos = Math.floor(diasTotais / 365);
+      const meses = Math.floor((diasTotais % 365) / 30);
+      const dias = (diasTotais % 365) % 30;
+
+      contadorEl.innerHTML = `Estamos juntos há: <br>
+        <strong>${anos}</strong> anos, <strong>${meses}</strong> meses, <strong>${dias}</strong> dias,<br>
+        <strong>${horas}</strong> horas, <strong>${minutos}</strong> minutos e <strong>${segundos}</strong> segundos.`;
+    }
+
+    setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
